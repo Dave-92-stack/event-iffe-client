@@ -13,6 +13,7 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import EventEdit from '../EventEdit/EventEdit'
 import MyEvents from '../MyEvents/MyEvents'
+import CreateUpload from '../CreateUpload/CreateUpload'
 
 class App extends Component {
   constructor () {
@@ -71,6 +72,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/events/:id' render={props => (
             <EventEdit {...props} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/uploads' render={() => (
+            <CreateUpload msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
         <Footer />
