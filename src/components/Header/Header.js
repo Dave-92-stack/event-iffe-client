@@ -9,6 +9,7 @@ const authenticatedOptions = (
     <Nav.Link href="#my-events">My Events</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+    <Nav.Link href="#uploads">Upload Image</Nav.Link>
   </Fragment>
 )
 

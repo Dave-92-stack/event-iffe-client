@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import messages from '../AutoDismissAlert/messages'
 
-function CreateUpload () {
+function CreateUpload (props) {
   const [selected, setSelected] = useState(null)
   const [upload, setUpload] = useState({})
   const [loading, setLoading] = useState(false)
@@ -18,13 +18,16 @@ function CreateUpload () {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const { msgAlert } = this.props
+    const { msgAlert, user } = props
     setLoading(true)
     const data = new FormData()
     data.append('upload', selected)
     axios({
       url: apiUrl + '/uploads',
       method: 'POST',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      },
       data
       // data:data
     })
