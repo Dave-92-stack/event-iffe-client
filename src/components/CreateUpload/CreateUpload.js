@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react'
 import axios from 'axios'
-import apiUrl from './config'
+import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import './App.css'
+import messages from '../AutoDismissAlert/messages'
 
 function CreateUpload () {
   const [selected, setSelected] = useState(null)
@@ -18,6 +18,7 @@ function CreateUpload () {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert } = this.props
     setLoading(true)
     const data = new FormData()
     data.append('upload', selected)
@@ -29,7 +30,18 @@ function CreateUpload () {
     })
       .then(res => setUpload(res.data.upload))
       .then(() => setLoading(false))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Image Posted!',
+        message: messages.creatEventSuccess,
+        variant: 'success'
+      }))
+      .catch(() => {
+        msgAlert({
+          heading: 'Image failed to post!',
+          message: messages.creatEventFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   return (
